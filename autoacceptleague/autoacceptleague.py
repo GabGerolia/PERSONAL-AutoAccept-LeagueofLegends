@@ -113,11 +113,13 @@ def main():
     mode = input("type 1 to auto accept, type 2 to auto accept and ban:").strip()
     if mode == "1":
         print("Auto Accept only mode selected")
+        print("REMINDER: MANUALLY CLOSE THE PROGRAM AFTER THE MATCH IS FOUND")
         while True:
-            if insideMatch == False:
-                autoaccept()
+            autoaccept()
+
     else:
         print("Auto Accept + Auto Ban mode selected")
+        print("REMINDER: This will automatically close the program after banning")
         champtoBan = input("type the champion name to ban (eg leblanc):").lower().strip()
         print(f"{champtoBan} will be banned")
         #function to autoaccept + ban
@@ -131,8 +133,7 @@ def main():
             else:
                 autoaccept()
                 insideMatch = True
-
-    
+  
 
 if __name__ == "__main__":
     main()
