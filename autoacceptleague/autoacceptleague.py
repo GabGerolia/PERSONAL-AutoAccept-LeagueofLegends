@@ -136,20 +136,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# def main():
-#     global insideMatch
-#     global done
-#     insideMatch = False
-#     done = False
-
-#     while True:
-#         if insideMatch == True:
-#             autoban()
-#             if done == True:
-#                 break
-#             else:
-#                 continue
-#         else:
-#             autoaccept()
-#             insideMatch = True
