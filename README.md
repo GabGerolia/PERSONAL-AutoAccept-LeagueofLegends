@@ -1,6 +1,8 @@
 # AutoAccept-LeagueofLegends
 auto accept league button and with auto ban for any league modes.
 
+NOTE: league resolution must be in 1280x720 only!
+
 To use:
 1. download and install python to your computer.
 2. Extract and make sure every file are in the same folder.
