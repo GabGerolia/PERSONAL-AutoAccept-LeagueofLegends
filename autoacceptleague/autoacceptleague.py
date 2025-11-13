@@ -1,12 +1,12 @@
 import pyautogui
 import time
 
-
-imageAcceptbtn = "KRacceptbtn.png" #change image name depends on language
-champtoBan = "leblanc" #change who to ban
-
-#do not change beyond this point
 delay = 1 #1second
+acceptDelay = 3 #seconds
+
+# global imageAcceptbtn = "KRacceptbtn.png" #change image name depends on language
+# champtoBan = "leblanc" #change who to ban
+ 
 def autoaccept():
     while True:
         try:
@@ -20,7 +20,7 @@ def autoaccept():
         except Exception as e:
             print(f"{e}")
         
-        time.sleep(delay)
+        time.sleep(acceptDelay)
 
 def autoban():
     global insideMatch
@@ -56,6 +56,7 @@ def autoban():
                 time.sleep(1)
                 pyautogui.click(x, y) #click ban btn
                 print("DONE")
+                print("program terminated, restart to use again")
                 done = True
                 break
         except Exception as e:
@@ -91,20 +92,64 @@ def autoban():
 def main():
     global insideMatch
     global done
+    global champtoBan
+    global mode #accept only or accept+ban
+    global language #en or kr
+    global imageAcceptbtn #image name depends on language
+
     insideMatch = False
     done = False
 
-    while True:
-        if insideMatch == True:
-            autoban()
-            if done == True:
-                break
-            else:
-                continue
-        else:
-            autoaccept()
-            insideMatch = True
+    #choose language
+    language = input("type your League language (en or kr):").lower().strip()
+    if language == "kr":
+        print("kr selected")
+        imageAcceptbtn = "KRacceptbtn.png"
+    else:
+        print("en selected")
+        imageAcceptbtn = "ENacceptbtn.png"
 
+    #choose mode, if 2 ask who to ban
+    mode = input("type 1 to auto accept, type 2 to auto accept and ban:").strip()
+    if mode == "1":
+        print("Auto Accept only mode selected")
+        while True:
+            if insideMatch == False:
+                autoaccept()
+    else:
+        print("Auto Accept + Auto Ban mode selected")
+        champtoBan = input("type the champion name to ban (eg leblanc):").lower().strip()
+        print(f"{champtoBan} will be banned")
+        #function to autoaccept + ban
+        while True:
+            if insideMatch == True:
+                autoban()
+                if done == True:
+                    break
+                else:
+                    continue
+            else:
+                autoaccept()
+                insideMatch = True
+
+    
 
 if __name__ == "__main__":
     main()
+
+# def main():
+#     global insideMatch
+#     global done
+#     insideMatch = False
+#     done = False
+
+#     while True:
+#         if insideMatch == True:
+#             autoban()
+#             if done == True:
+#                 break
+#             else:
+#                 continue
+#         else:
+#             autoaccept()
+#             insideMatch = True
